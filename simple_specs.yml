@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  description: Recommendation Engine test 
+  version: 1.0.0
+  title: Recommendation Engine
+  # put the contact info for your development or API team
+  contact:
+    email: joe.byrd@hcl.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+paths:
+  /login:
+    get:
+      summary: Sends user credintials to retrieve surveys
+      operationId: loginUser
+      description: Sends user credintials to retrieve surveys
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: userName
+        description: User name
+        type: string
+      - in: query
+        name: password
+        description: Password
+        type: string
+      responses:
+        200:
+          description: Successful
+          schema:
+            $ref: '#/definitions/Surveys'
+        400:
+          description: Invalid login
+definitions:
+  #User:
+  #  required:
+  #  - username
+  #  - password
+  #  properties:
+  #    username:
+  #      type: string
+  #    password:
+  #      type: string
+  Survey:
+    type: object
+    properties:
+      scScore:
+        type: integer
+      cdScore:
+        type: integer
+      ctScore:
+        type: integer
+      mfScore:
+        type: integer
+      archScore:
+        type: integer
+      cpScore:
+        type: integer
+  Surveys:
+    type: array
+    items:
+      $ref: '#/definitions/Survey'
+      
+  
+      
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /joebyrd32/RecommendationEngineService/1.0.0
+schemes:
+ - https
+ - http
